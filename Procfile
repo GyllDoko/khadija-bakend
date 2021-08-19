@@ -1,0 +1,1 @@
+web: gunicorn khadija_mobile.wsgi
