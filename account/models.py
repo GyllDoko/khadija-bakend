@@ -10,7 +10,7 @@ def upload_avatar(instance, filename):
 
 class Account(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    phone_number = models.CharField(max_length=20)
+    phone_number = models.CharField(max_length=20, blank=True, null=True)
     address = models.CharField(max_length=500, blank=True, null=True)
     avatar = models.FileField(upload_to=upload_avatar, blank=True, null=True)
     is_delivery_man = models.BooleanField(null=True, blank=True, default=False)

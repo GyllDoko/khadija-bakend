@@ -62,17 +62,16 @@ def register(request):
         username = user_info['email']
         email = user_info['email']
         password = user_info['password']
-        adress = user_info['adress'] if user_info['adress'] else ""
-        phone_number = user_info['phone_number'] if user_info['phone_number'] else ""
-        avatar = user_info['avatar'] if user_info['avatar'] else ""
+        # adress = user_info['adress']
+        # phone_number = user_info['phone_number']
+        # avatar = user_info['avatar']
 
         if User.objects.filter(email=email).exists():
             return JsonResponse('Cet email est déja utilisé !', safe=False)
 
         user = User.objects.create_user(
             username, email, password, first_name=first_name, last_name=last_name)
-        Account.objects.create(user=user, address=adress,
-                               phone_number=phone_number, avatar=avatar)
+        Account.objects.create(user=user)
         return JsonResponse({'status': True}, safe=False)
     elif request.method == 'PUT':
         data = JSONParser().parse(request)
@@ -99,9 +98,9 @@ def register(request):
             first_name = name_tab[name_tab.length - 1]
         print(first_name)
         print(last_name)
-        adress = data['adress'] if data['adress'] else ""
-        phone_number = data['phone_number'] if data['phone_number'] else ""
-        avatar = data['avatar'] if data['avatar'] else ""
+        address = data['adress']
+        phone_number = data['phone_number']
+        avatar = data['avatar']
         user_id = data['id']
         user = User.objects.filter(email=email)
         for usr in user:
