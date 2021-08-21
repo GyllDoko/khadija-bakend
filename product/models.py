@@ -17,10 +17,16 @@ class Category(models.Model):
         return self.name
 
 
+def upload_default_image(instance, filename):
+    return '/'.join(['DefaultImage', str(instance.name), filename])
+
+
 class Product(models.Model):
     name = models.CharField(max_length=50, blank=True, null=True)
     price = models.DecimalField(
         max_digits=7, decimal_places=2, null=True, blank=True)
+    default_image = models.FileField(
+        upload_to=upload_default_image, blank=True, null=True)
     quantity = models.SmallIntegerField(editable=False, null=True, blank=True)
     category = models.ForeignKey(
         Category, related_name='products', on_delete=models.CASCADE)
