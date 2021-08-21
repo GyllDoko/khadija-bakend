@@ -38,10 +38,28 @@ def login(request):
 def register(request):
     if request.method == 'POST':
         user_info = JSONParser().parse(request)
+        name = user_info['name']
+        first_name = ""
+        last_name = ""
+        name_tab = name.split(' ')
+        if name_tab.length > 2:
+            for item in name_tab:
+                if item.isupper():
+                    last_name = item
+                    name_tab.remove(item)
+            first_name = " ".join(name_tab)
+        elif name_tab == 2:
+            for item in name_tab:
+                if item.isupper():
+                    last_name = item
+                    name_tab.remove(item)
+            first_name = " ".join(name_tab)
+        else:
+            last_name = name_tab[0]
+            first_name = name_tab[name_tab.length - 1]
+        print(first_name)
+        print(last_name)
         username = user_info['email']
-
-        first_name = user_info['first_name']
-        last_name = user_info['last_name']
         email = user_info['email']
         password = user_info['password']
         adress = user_info['adress']
