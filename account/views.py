@@ -42,13 +42,13 @@ def register(request):
         first_name = ""
         last_name = ""
         name_tab = name.split(' ')
-        if name_tab.length > 2:
+        if len(name_tab) > 2:
             for item in name_tab:
                 if item.isupper():
                     last_name = item
                     name_tab.remove(item)
             first_name = " ".join(name_tab)
-        elif name_tab == 2:
+        elif len(name_tab) == 2:
             for item in name_tab:
                 if item.isupper():
                     last_name = item
@@ -82,13 +82,13 @@ def register(request):
         first_name = ""
         last_name = ""
         name_tab = name.split(' ')
-        if name_tab.length > 2:
+        if len(name_tab) > 2:
             for item in name_tab:
                 if item.isupper():
                     last_name = item
                     name_tab.remove(item)
             first_name = " ".join(name_tab)
-        elif name_tab == 2:
+        elif len(name_tab) == 2:
             for item in name_tab:
                 if item.isupper():
                     last_name = item
