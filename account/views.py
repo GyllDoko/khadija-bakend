@@ -62,9 +62,9 @@ def register(request):
         username = user_info['email']
         email = user_info['email']
         password = user_info['password']
-        adress = user_info['adress']
-        phone_number = user_info['phone_number']
-        avatar = user_info['avatar']
+        adress = user_info['adress'] if user_info['adress'] else ""
+        phone_number = user_info['phone_number'] if user_info['phone_number'] else ""
+        avatar = user_info['avatar'] if user_info['avatar'] else ""
 
         if User.objects.filter(email=email).exists():
             return JsonResponse('Cet email est déja utilisé !', safe=False)
@@ -99,9 +99,9 @@ def register(request):
             first_name = name_tab[name_tab.length - 1]
         print(first_name)
         print(last_name)
-        address = data['adress']
-        phone_number = data['phone_number']
-        avatar = data['avatar']
+        adress = data['adress'] if data['adress'] else ""
+        phone_number = data['phone_number'] if data['phone_number'] else ""
+        avatar = data['avatar'] if data['avatar'] else ""
         user_id = data['id']
         user = User.objects.filter(email=email)
         for usr in user:
