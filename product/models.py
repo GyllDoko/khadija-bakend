@@ -19,8 +19,9 @@ class Category(models.Model):
 
 class Product(models.Model):
     name = models.CharField(max_length=50, blank=True, null=True)
-    price = models.DecimalField(max_digits=7, decimal_places=2)
-    quantity = models.SmallIntegerField(editable=False)
+    price = models.DecimalField(
+        max_digits=7, decimal_places=2, null=True, blank=True)
+    quantity = models.SmallIntegerField(editable=False, null=True, blank=True)
     category = models.ForeignKey(
         Category, related_name='products', on_delete=models.CASCADE)
 
