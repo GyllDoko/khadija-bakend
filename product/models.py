@@ -10,8 +10,8 @@ class Category(models.Model):
     name = models.CharField(max_length=50, blank=True, null=True)
 
     class Meta:
-        verbose_name = "categorie"
-        verbose_name_plural = "categories"
+        verbose_name = "catégorie"
+        verbose_name_plural = "catégories"
 
     def __str__(self):
         return self.name
@@ -20,13 +20,13 @@ class Category(models.Model):
 class Product(models.Model):
     name = models.CharField(max_length=50, blank=True, null=True)
     price = models.DecimalField(max_digits=7, decimal_places=2)
-    quantity = models.SmallIntegerField()
+    quantity = models.SmallIntegerField(editable=False)
     category = models.ForeignKey(
         Category, related_name='products', on_delete=models.CASCADE)
 
     class Meta:
-        verbose_name = "product"
-        verbose_name_plural = "products"
+        verbose_name = "produit"
+        verbose_name_plural = "produits"
 
     def __str__(self):
         return self.name
@@ -45,18 +45,19 @@ class Description(models.Model):
     def __str__(self):
         return self.name
 
+
 def upload_image(instance, filename):
     return '/'.join(['Product Image', str(instance.product.name), filename])
 
+
 class Image(models.Model):
     url = models.FileField(upload_to=upload_image, null=True, blank=True)
-    product = models.ForeignKey(Product, related_name='images', on_delete=models.CASCADE)
-    
+    product = models.ForeignKey(
+        Product, related_name='images', on_delete=models.CASCADE)
+
     class Meta:
         verbose_name = "image"
         verbose_name_plural = "images"
 
     def __str__(self):
-        return self.url
-
-    
+        return self.url.path

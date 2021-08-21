@@ -12,14 +12,14 @@ class Order(models.Model):
     status = models.BooleanField(null=True, blank=True)
     total_price = models.DecimalField(
         max_digits=7, decimal_places=2, null=True, blank=True)
-    products = models.ManyToManyField(Product, null=True, blank=True)
+    products = models.ManyToManyField(Product)
     user = models.ForeignKey(
         User, related_name='orders', on_delete=models.CASCADE)
     ticket = models.CharField(max_length=10, blank=True, null=True)
 
     class Meta:
-        verbose_name = "order"
-        verbose_name_plural = "orders"
+        verbose_name = "Commande"
+        verbose_name_plural = "Commandes"
 
     def __str__(self):
         return self.ticket

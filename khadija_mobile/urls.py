@@ -18,9 +18,15 @@ from django.urls import path, include
 from account import urls as account_urls
 from product import urls as product_urls
 from order import urls as order_urls
+
+from django.conf import settings
+from django.conf.urls.static import static
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('user/', include(account_urls)),
     path('product/', include(product_urls)),
     path('order/', include(order_urls)),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
