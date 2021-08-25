@@ -27,7 +27,7 @@ class Product(models.Model):
         max_digits=7, decimal_places=2, null=True, blank=True)
     default_image = models.FileField(
         upload_to=upload_default_image, blank=True, null=True)
-    quantity = models.SmallIntegerField(editable=False, null=True, blank=True)
+    quantity = models.SmallIntegerField(editable=False, default=1)
     category = models.ForeignKey(
         Category, related_name='products', on_delete=models.CASCADE)
 
