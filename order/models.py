@@ -15,7 +15,7 @@ class Order(models.Model):
         max_digits=7, decimal_places=2, null=True, blank=True)
     product = models.ManyToManyField(Product)
     account = models.ForeignKey(
-        Account, related_name='orders', on_delete=models.CASCADE)
+        Account, related_name='orders', on_delete=models.CASCADE, null=True, blank=True)
     ticket = models.CharField(max_length=10, blank=True, null=True)
 
     class Meta:
