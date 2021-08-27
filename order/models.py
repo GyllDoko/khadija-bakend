@@ -31,7 +31,7 @@ class OrderProduct(models.Model):
     price = models.DecimalField(
         max_digits=7, decimal_places=2, null=True, blank=True)
     default_image = models.CharField(max_length=10000, blank=True, null=True)
-    quantity = models.SmallIntegerField(editable=False, default=1)
+    quantity = models.SmallIntegerField(null=True, blank=True)
     order = models.ForeignKey(Order, on_delete=models.CASCADE,
                               null=True, blank=True, related_name="orders_products")
 

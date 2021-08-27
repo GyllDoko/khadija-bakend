@@ -29,3 +29,11 @@ def save_order(request):
                 name=item["name"], price=item['price'], default_image=item['default_image'], quantity=item['quantity'], order=order)
 
         return JsonResponse(True, safe=False)
+
+@csrf_exempt
+def get_order(request, user):
+    pass
+
+@csrf_exempt
+def get_order_products(request, order):
+    pass
