@@ -1,4 +1,4 @@
-from order.models import Order
+from order.models import Order, OrderProduct
 from django.contrib import admin
 
 # Register your models here.
@@ -9,3 +9,5 @@ class OrderAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Order, OrderAdmin)
+
+admin.site.register(OrderProduct)
