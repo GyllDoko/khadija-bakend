@@ -38,6 +38,20 @@ def get_order(request, user):
         orders = account.orders.all()
         order_serializer = OrderSerializer(orders, many=True)
         return JsonResponse(order_serializer.data, safe=False)
+    if request.method == 'POST':
+        data = JSONParser().parse(request)
+        search = data["status"]
+        if search == "all":
+            account = Account.objects.get(pk=user)
+            orders = account.orders.all()
+            order_serializer = OrderSerializer(orders, many=True)
+            return JsonResponse(order_serializer.data, safe=False)
+
+        elif search == "pending":
+            account = Account.objects.get(pk=user)
+            orders = account.orders.filter(status=False)
+            order_serializer = OrderSerializer(orders, many=True)
+            return JsonResponse(order_serializer.data, safe=False)
 
 
 @csrf_exempt
