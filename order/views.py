@@ -49,7 +49,7 @@ def get_order(request, user):
 
         elif search == "pending":
             account = Account.objects.get(pk=user)
-            orders = account.orders.filter(status=False)
+            orders = account.orders.filter(status=True)
             order_serializer = OrderSerializer(orders, many=True)
             return JsonResponse(order_serializer.data, safe=False)
 
