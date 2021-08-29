@@ -76,7 +76,7 @@ def register(request):
     elif request.method == 'PUT':
         data = JSONParser().parse(request)
         email = data['email']
-        password = data['password']
+        # password = data['password']
         name = data['name']
         first_name = ""
         last_name = ""
@@ -96,11 +96,9 @@ def register(request):
         else:
             last_name = name_tab[0]
             first_name = name_tab[name_tab.length - 1]
-        print(first_name)
-        print(last_name)
         address = data['adress']
         phone_number = data['phone_number']
-        avatar = data['avatar']
+        # avatar = data['avatar']
         user_id = data['id']
         user = User.objects.filter(email=email)
         for usr in user:
@@ -111,10 +109,10 @@ def register(request):
         for acc in account:
             address = address if address != "" else acc.address
             phone_number = phone_number if phone_number != "" else acc.phone_number
-            avatar = avatar if avatar != "" else acc.avatar
+            # avatar = avatar if avatar != "" else acc.avatar
 
         account.update(address=address,
-                       phone_number=phone_number, avatar=avatar)
+                       phone_number=phone_number)
         account = Account.objects.get(user__email=email)
         account_serializers = AccountSerializers(account)
         return JsonResponse({'status': True, 'user': account_serializers.data}, safe=False)
