@@ -56,7 +56,7 @@ def register(request):
             first_name = " ".join(name_tab)
         else:
             last_name = name_tab[0]
-            first_name = name_tab[name_tab.length - 1]
+            first_name = name_tab[len(name_tab) - 1]
         print(first_name)
         print(last_name)
         username = user_info['email']
