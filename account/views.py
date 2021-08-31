@@ -55,8 +55,8 @@ def register(request):
                     name_tab.remove(item)
             first_name = " ".join(name_tab)
         else:
-            last_name = name_tab[0]
-            first_name = name_tab[len(name_tab) - 1]
+            last_name = name
+            first_name = name
         print(first_name)
         print(last_name)
         username = user_info['email']
