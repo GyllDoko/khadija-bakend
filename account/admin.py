@@ -9,8 +9,8 @@ class AccountAdmin(admin.ModelAdmin):
     list_display = ['user', 'phone_number', "is_delivery_man", "is_cook"]
 
 
-# admin.site.register(Account, AccountAdmin)
-admin.site.unregister(User)
+admin.site.register(Account, AccountAdmin)
+# admin.site.unregister(User)
 admin.site.unregister(Group)
 # default: "Django Administration"
 admin.site.site_header = 'Restaurant App Administration'
